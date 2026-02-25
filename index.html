@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valter Mariano | Advocacia Criminal Estratégica</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-source-sans-pro/3.0.0/source-sans-pro.min.css">
+    <style>
+        :root {
+            --ouro: #c5a059;
+            --preto: #0a0a0a;
+            --cinza-escuro: #1a1a1a;
+            --branco: #ffffff;
+        }
+        body { font-family: 'Source Sans Pro', sans-serif; background-color: var(--preto); color: var(--branco); margin: 0; line-height: 1.6; }
+        header { padding: 4rem 10%; text-align: center; border-bottom: 2px solid var(--ouro); background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80'); background-size: cover; }
+        .logo { color: var(--ouro); font-size: 2.5rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 0.5rem; }
+        .subtitulo { font-size: 1.1rem; color: #ccc; }
+        nav { display: flex; justify-content: center; gap: 30px; padding: 1rem; background: var(--cinza-escuro); position: sticky; top: 0; z-index: 100; }
+        nav a { color: var(--branco); text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.9rem; }
+        nav a:hover { color: var(--ouro); }
+        .container { padding: 4rem 10%; }
+        .grid-blog { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 2rem; }
+        .card-post { background: var(--cinza-escuro); padding: 2rem; border-left: 4px solid var(--ouro); transition: 0.3s; }
+        .card-post:hover { transform: translateY(-5px); }
+        .card-post h3 { color: var(--ouro); margin-top: 0; }
+        .data { font-size: 0.8rem; color: #888; }
+        .btn-ler { display: inline-block; margin-top: 1rem; color: var(--ouro); text-decoration: none; font-weight: bold; }
+        footer { background: #050505; padding: 3rem 10%; border-top: 1px solid #333; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo">Valter Mariano</div>
+    <div class="subtitulo">Sociedade Individual de Advocacia | OAB/XX 000.000</div>
+</header>
+
+<nav>
+    <a href="#inicio">Início</a>
+    <a href="#blog">Blog Jurídico</a>
+    <a href="#contato">Contato</a>
+</nav>
+
+<div class="container" id="inicio">
+    <h2 style="color: var(--ouro);">Atuação Criminal Estratégica</h2>
+    <p>Defesa técnica especializada em nulidades processuais e recursos perante o STJ e STF. Direito penal levado a sério com foco na garantia da liberdade e do devido processo legal.</p>
+</div>
+
+<div class="container" id="blog" style="background: #111;">
+    <h2 style="color: var(--ouro);">Inquietações Jurídicas & Teses</h2>
+    <div class="grid-blog">
+        {% for post in site.posts %}
+        <div class="card-post">
+            <div class="data">{{ post.date | date: "%d/%m/%Y" }}</div>
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
+            <a href="{{ post.url }}" class="btn-ler">Ler Análise Completa →</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<footer id="contato">
+    <p><strong>Contato:</strong> valtermarianoadvocacia.adv@gmail.com</p>
+    <p>📍 Atendimento em todo o território nacional | Brasíla - DF</p>
+    <p style="color: #666; font-size: 0.7rem; margin-top: 2rem;">© 2026 Valter Mariano Advocacia. Todos os direitos reservados. Protegido por criptografia GitHub.</p>
+</footer>
+
+</body>
+</html>
