@@ -1,0 +1,8 @@
+title: Valter Mariano Sociedade Individual de Advocacia
+description: Advocacia Criminal Estratégica e Recursos em Tribunais Superiores.
+baseurl: ""
+url: "https://valtermarianoadvocacia.github.io"
+
+# Configurações do Blog
+permalink: /blog/:title/
+markdown: kramdown
