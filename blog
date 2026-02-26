@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Post | Valter Mariano</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Markdown renderer + sanitizer -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
+
+  <style>
+    :root{ --azul:#07162A; --ouro:#C5A059; --texto:#EDEFF5; --muted:#B9C0D0; --max:900px; }
+    *{ box-sizing:border-box; }
+    body{ margin:0; font-family:'Source Sans 3',system-ui; background:var(--azul); color:var(--texto); line-height:1.7; }
+    a{ color:var(--ouro); }
+    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px; }
+    .btn{ display:inline-block; padding:10px 14px; border:1px solid rgba(197,160,89,.55); border-radius:12px; text-decoration:none; font-weight:800; color:var(--texto); }
+    .btn:hover{ color:var(--ouro); border-color:var(--ouro); }
+    h1{ color:var(--ouro); margin:14px 0 6px; }
+    .meta{ color:var(--muted); font-size:14px; }
+    .note{ border-left:4px solid rgba(197,160,89,.8); padding-left:12px; color:var(--muted); margin:18px 0; }
+    .content img{ max-width:100%; height:auto; border-radius:12px; }
+    .content pre{ overflow:auto; padding:12px; border-radius:12px; background:#081b33; }
+    .content blockquote{ border-left:4px solid rgba(255,255,255,.18); padding-left:12px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="btn" href="./">← Voltar</a>
+
+    <h1 id="t"></h1>
+    <div class="meta" id="m"></div>
+
+    <div class="note">
+      Aviso: conteúdo meramente informativo, sem promessa de resultados e sem substituição de consulta jurídica individualizada.
+    </div>
+
+    <div class="content" id="c"></div>
+  </div>
+
+<script>
+  const OWNER="valtermarianoadvocacia";
+  const REPO="valtermarianoadvocacia.github.io";
+
+  function qs(k){ return new URLSearchParams(location.search).get(k); }
+  function fmtDate(iso){ try{ return new Date(iso).toLocaleDateString("pt-BR"); }catch(e){ return ""; } }
+
+  async function load(){
+    const n = qs("n");
+    if(!n){ document.getElementById("c").innerText="Post não encontrado."; return; }
+
+    const url = `https://api.github.com/repos/${OWNER}/${REPO}/issues/${n}`;
+    const r = await fetch(url, {headers:{Accept:"application/vnd.github+json"}});
+    if(!r.ok){ document.getElementById("c").innerText="Falha ao carregar o post."; return; }
+    const it = await r.json();
+
+    document.title = it.title + " | Valter Mariano";
+    document.getElementById("t").innerText = it.title;
+    document.getElementById("m").innerText = `${fmtDate(it.created_at)} · Post #${it.number}`;
+
+    const html = marked.parse(it.body || "");
+    document.getElementById("c").innerHTML = DOMPurify.sanitize(html);
+  }
+
+  load();
+</script>
+</body>
+</html>
