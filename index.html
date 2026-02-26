@@ -22,7 +22,6 @@ layout: null
       --branco:#ffffff;
       --texto-suave:#cfcfcf;
     }
-
     *{ box-sizing:border-box; }
     body{
       font-family:'Source Sans 3', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -33,21 +32,26 @@ layout: null
     }
 
     header{
-      padding: 3.5rem 10%;
+      padding: 2.25rem 10% 2rem;
       text-align:center;
       border-bottom:2px solid var(--ouro);
       background:
-        radial-gradient(1200px 600px at 50% 0%, rgba(197,160,89,0.18), transparent 55%),
-        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.9));
+        radial-gradient(1200px 600px at 50% 0%, rgba(197,160,89,0.14), transparent 55%),
+        linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.92));
     }
 
-    .logo{
-      color: var(--ouro);
-      font-size: 2rem;
-      letter-spacing: .5px;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin: 0 0 .5rem 0;
+    .banner-wrap{
+      display:flex;
+      justify-content:center;
+      margin: 0 auto 1.25rem;
+    }
+    .banner{
+      width: min(820px, 100%);
+      height: auto;
+      border-radius: 14px;
+      border: 1px solid rgba(197,160,89,.35);
+      box-shadow: 0 12px 38px rgba(0,0,0,.45);
+      background: #0b0b0b;
     }
 
     .subtitulo{
@@ -67,7 +71,6 @@ layout: null
       z-index:100;
       border-bottom: 1px solid rgba(197,160,89,.25);
     }
-
     nav a{
       color: var(--branco);
       text-decoration:none;
@@ -87,7 +90,6 @@ layout: null
       gap: 22px;
       margin-top: 1.5rem;
     }
-
     .card-post{
       background: var(--cinza);
       padding: 1.6rem;
@@ -132,7 +134,6 @@ layout: null
       border-top: 1px solid rgba(255,255,255,.12);
       font-size: .95rem;
     }
-
     .legal{
       margin-top: 1.5rem;
       font-size: .85rem;
@@ -146,7 +147,13 @@ layout: null
 <body>
 
 <header id="topo">
-  <h1 class="logo">{{ site.title }}</h1>
+  <div class="banner-wrap">
+    <picture>
+      <source srcset="{{ '/assets/img/banner.webp' | relative_url }}" type="image/webp">
+      <img class="banner" src="{{ '/assets/img/banner.jpg' | relative_url }}"
+           alt="Valter Mariano Sociedade Individual de Advocacia — logomarca" loading="eager" decoding="async">
+    </picture>
+  </div>
   <p class="subtitulo">Dr. Valter Mariano Silva Pereira | OAB/DF 85.673</p>
 </header>
 
@@ -165,7 +172,7 @@ layout: null
 
   <div class="cta">
     <a class="btn" href="#contato">Agendar atendimento</a>
-    <a class="btn" href="#blog">Ver publicações</a>
+    <a class="btn" href="{{ '/blog/' | relative_url }}">Ver publicações</a>
   </div>
 </section>
 
@@ -198,7 +205,7 @@ layout: null
   <div class="legal">
     <p>
       Conteúdo meramente informativo, sem promessa de resultados e sem substituição de consulta individualizada.
-      Publicidade profissional orientada pela discrição e sobriedade, conforme Código de Ética e Provimento 205/2021.
+      Publicidade profissional orientada pela discrição e sobriedade.
     </p>
     <p>
       Valter Mariano Sociedade Individual de Advocacia | Registro OAB/DF 11.172/25 · OAB/DF 85.673<br>
