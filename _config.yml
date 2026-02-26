@@ -1,8 +1,8 @@
-title: Valter Mariano Sociedade Individual de Advocacia
-description: Advocacia Criminal Estratégica e Recursos em Tribunais Superiores.
+title: "Valter Mariano Sociedade Individual de Advocacia"
+description: "Advocacia criminal. Conteúdo jurídico informativo e atualização jurisprudencial."
 baseurl: ""
 url: "https://valtermarianoadvocacia.github.io"
 
-# Configurações do Blog
 permalink: /blog/:title/
 markdown: kramdown
+lang: "pt-BR"
