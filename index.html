@@ -1,9 +1,12 @@
+---
+---
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Valter Mariano | Sociedade Individual de Advocacia</title>
+  <title>{{ site.title }}</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,21 +14,12 @@
 
   <style>
     :root{
-      --ouro:#c5a059;
-      --preto:#0a0a0a;
-      --cinza-escuro:#141414;
-      --cinza:#1f1f1f;
-      --branco:#ffffff;
-      --texto-suave:#cfcfcf;
+      --ouro:#c5a059; --preto:#0a0a0a; --cinza-escuro:#141414; --cinza:#1f1f1f;
+      --branco:#ffffff; --texto-suave:#cfcfcf;
     }
     *{ box-sizing:border-box; }
-    body{
-      font-family:'Source Sans 3', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--preto);
-      color: var(--branco);
-      margin:0;
-      line-height:1.6;
-    }
+    body{ font-family:'Source Sans 3', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--preto); color:var(--branco); margin:0; line-height:1.6; }
 
     header{
       padding: 2.25rem 10% 2rem;
@@ -35,136 +29,88 @@
         radial-gradient(1200px 600px at 50% 0%, rgba(197,160,89,0.14), transparent 55%),
         linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.92));
     }
-
-    .banner-wrap{
-      display:flex;
-      justify-content:center;
-      margin: 0 auto 1.25rem;
-    }
+    .banner-wrap{ display:flex; justify-content:center; margin: 0 auto 1.25rem; }
     .banner{
       width: min(860px, 100%);
       height: auto;
       border-radius: 14px;
       border: 1px solid rgba(197,160,89,.35);
       box-shadow: 0 12px 38px rgba(0,0,0,.45);
-      background: #0b0b0b;
-      display:block;
+      background:#0b0b0b; display:block;
     }
+    .subtitulo{ font-size: 1rem; color: var(--texto-suave); margin: 0; }
 
-    .subtitulo{
-      font-size: 1rem;
-      color: var(--texto-suave);
-      margin: 0;
-    }
-
-    nav{
-      display:flex;
-      justify-content:center;
-      gap: 28px;
-      padding: 1rem 10%;
-      background: var(--cinza-escuro);
-      position: sticky;
-      top:0;
-      z-index:100;
-      border-bottom: 1px solid rgba(197,160,89,.25);
-    }
-    nav a{
-      color: var(--branco);
-      text-decoration:none;
-      font-weight:600;
-      text-transform:uppercase;
-      font-size:.9rem;
-    }
-    nav a:hover{ color: var(--ouro); }
+    nav{ display:flex; justify-content:center; gap:28px; padding:1rem 10%;
+      background:var(--cinza-escuro); position:sticky; top:0; z-index:100;
+      border-bottom:1px solid rgba(197,160,89,.25); }
+    nav a{ color:var(--branco); text-decoration:none; font-weight:600; text-transform:uppercase; font-size:.9rem; }
+    nav a:hover{ color:var(--ouro); }
 
     .container{ padding: 3rem 10%; }
     .section-title{ color: var(--ouro); margin: 0 0 1rem 0; }
     .muted{ color: var(--texto-suave); }
 
-    .cta{
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-      margin-top: 1.25rem;
-    }
-    .btn{
-      display:inline-block;
-      padding: .85rem 1rem;
-      border: 1px solid rgba(197,160,89,.55);
-      color: var(--branco);
-      text-decoration:none;
-      font-weight:700;
-      background: transparent;
-    }
-    .btn:hover{ border-color: var(--ouro); color: var(--ouro); }
+    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; margin-top: 1.5rem; }
+    .card{ background:var(--cinza); padding:1.6rem; border-left:4px solid var(--ouro); transition:transform .2s ease; }
+    .card:hover{ transform: translateY(-4px); }
+    .data{ font-size:.85rem; color:#9a9a9a; }
+    .card h3{ margin:.4rem 0 .6rem 0; font-size:1.1rem; color:var(--ouro); }
+    .card a{ color:inherit; text-decoration:none; }
 
-    footer{
-      background:#060606;
-      padding: 2.5rem 10%;
-      border-top: 1px solid rgba(255,255,255,.12);
-      font-size: .95rem;
-    }
-    .legal{
-      margin-top: 1.5rem;
-      font-size: .85rem;
-      color:#9a9a9a;
-      border-top: 1px solid rgba(255,255,255,.12);
-      padding-top: 1.25rem;
-    }
+    footer{ background:#060606; padding:2.5rem 10%; border-top:1px solid rgba(255,255,255,.12); }
+    .legal{ margin-top:1.5rem; font-size:.85rem; color:#9a9a9a; border-top:1px solid rgba(255,255,255,.12); padding-top:1.25rem; }
   </style>
 </head>
 
 <body>
-
 <header id="topo">
   <div class="banner-wrap">
-    <!-- Se você só tiver JPG, pode apagar o <source> webp -->
     <picture>
-      <source srcset="/assets/img/banner.webp" type="image/webp">
-      <img class="banner" src="/assets/img/banner.jpg"
-           alt="Valter Mariano Sociedade Individual de Advocacia — logomarca"
-           loading="eager" decoding="async">
+      <source srcset="{{ '/assets/img/banner.webp' | relative_url }}" type="image/webp">
+      <img class="banner" src="{{ '/assets/img/banner.jpg' | relative_url }}"
+           alt="Valter Mariano Sociedade Individual de Advocacia — logomarca" loading="eager">
     </picture>
   </div>
-
   <p class="subtitulo">Dr. Valter Mariano Silva Pereira | OAB/DF 85.673</p>
 </header>
 
 <nav>
   <a href="#inicio">Início</a>
-  <a href="/blog/">Blog</a>
+  <a href="{{ '/blog/' | relative_url }}">Blog</a>
   <a href="#contato">Contato</a>
 </nav>
 
 <section class="container" id="inicio">
   <h2 class="section-title">Atuação</h2>
   <p class="muted">
-    Advocacia criminal, com atuação em acompanhamento processual, elaboração de peças e recursos,
-    conforme as particularidades de cada caso.
+    Advocacia criminal, com atuação em acompanhamento processual, elaboração de peças e recursos, conforme as particularidades de cada caso.
   </p>
 
-  <div class="cta">
-    <a class="btn" href="#contato">Agendar atendimento</a>
-    <a class="btn" href="/blog/">Ver publicações</a>
+  <h2 class="section-title" style="margin-top:2.5rem;">Últimas publicações</h2>
+  <div class="grid">
+    {% for post in site.posts limit: 6 %}
+      <article class="card">
+        <div class="data">{{ post.date | date: "%d/%m/%Y" }}</div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="muted">{{ post.excerpt | strip_html | truncatewords: 22 }}</p>
+      </article>
+    {% endfor %}
   </div>
+
+  {% if site.posts.size == 0 %}
+    <p class="muted">Ainda não há posts publicados.</p>
+  {% endif %}
 </section>
 
 <footer id="contato">
   <h2 class="section-title">Contato</h2>
-  <p><strong>E-mail:</strong> <a href="mailto:valtermarianoadvocacia.adv@gmail.com" style="color:var(--ouro); text-decoration:none;">valtermarianoadvocacia.adv@gmail.com</a></p>
-  <p><strong>WhatsApp:</strong> <a href="https://wa.me/5561996057330" style="color:var(--ouro); text-decoration:none;">(61) 99605-7330</a></p>
+  <p><strong>E-mail:</strong> <a style="color:var(--ouro); text-decoration:none;" href="mailto:valtermarianoadvocacia.adv@gmail.com">valtermarianoadvocacia.adv@gmail.com</a></p>
+  <p><strong>WhatsApp:</strong> <a style="color:var(--ouro); text-decoration:none;" href="https://wa.me/5561996057330">(61) 99605-7330</a></p>
   <p class="muted"><strong>Localidade:</strong> Brasília/DF. Atendimento presencial e remoto, mediante agendamento.</p>
 
   <div class="legal">
-    <p>
-      Conteúdo meramente informativo, sem promessa de resultados e sem substituição de consulta individualizada.
-      Publicidade profissional orientada pela discrição e sobriedade.
-    </p>
-    <p>
-      Valter Mariano Sociedade Individual de Advocacia · © 2026
-    </p>
+    Conteúdo meramente informativo, sem promessa de resultados e sem substituição de consulta jurídica individualizada.
   </div>
 </footer>
-
 </body>
 </html>
