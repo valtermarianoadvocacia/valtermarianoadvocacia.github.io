@@ -1,13 +1,9 @@
----
-layout: null
----
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ site.title }} | Advocacia Criminal</title>
+  <title>Valter Mariano | Sociedade Individual de Advocacia</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -46,12 +42,13 @@ layout: null
       margin: 0 auto 1.25rem;
     }
     .banner{
-      width: min(820px, 100%);
+      width: min(860px, 100%);
       height: auto;
       border-radius: 14px;
       border: 1px solid rgba(197,160,89,.35);
       box-shadow: 0 12px 38px rgba(0,0,0,.45);
       background: #0b0b0b;
+      display:block;
     }
 
     .subtitulo{
@@ -83,33 +80,6 @@ layout: null
     .container{ padding: 3rem 10%; }
     .section-title{ color: var(--ouro); margin: 0 0 1rem 0; }
     .muted{ color: var(--texto-suave); }
-
-    .grid-blog{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 22px;
-      margin-top: 1.5rem;
-    }
-    .card-post{
-      background: var(--cinza);
-      padding: 1.6rem;
-      border-left: 4px solid var(--ouro);
-      transition: transform .2s ease;
-    }
-    .card-post:hover{ transform: translateY(-4px); }
-    .card-post h3{
-      color: var(--ouro);
-      margin: .4rem 0 .6rem 0;
-      font-size: 1.1rem;
-    }
-    .data{ font-size: .85rem; color:#9a9a9a; }
-    .btn-ler{
-      display:inline-block;
-      margin-top: 1rem;
-      color: var(--ouro);
-      text-decoration:none;
-      font-weight:700;
-    }
 
     .cta{
       display:flex;
@@ -148,52 +118,35 @@ layout: null
 
 <header id="topo">
   <div class="banner-wrap">
+    <!-- Se você só tiver JPG, pode apagar o <source> webp -->
     <picture>
-      <source srcset="{{ '/assets/img/banner.webp' | relative_url }}" type="image/webp">
-      <img class="banner" src="{{ '/assets/img/banner.jpg' | relative_url }}"
-           alt="Valter Mariano Sociedade Individual de Advocacia — logomarca" loading="eager" decoding="async">
+      <source srcset="/assets/img/banner.webp" type="image/webp">
+      <img class="banner" src="/assets/img/banner.jpg"
+           alt="Valter Mariano Sociedade Individual de Advocacia — logomarca"
+           loading="eager" decoding="async">
     </picture>
   </div>
+
   <p class="subtitulo">Dr. Valter Mariano Silva Pereira | OAB/DF 85.673</p>
 </header>
 
 <nav>
   <a href="#inicio">Início</a>
-  <a href="#blog">Blog</a>
+  <a href="/blog/">Blog</a>
   <a href="#contato">Contato</a>
 </nav>
 
 <section class="container" id="inicio">
   <h2 class="section-title">Atuação</h2>
   <p class="muted">
-    Advocacia criminal, com atuação em acompanhamento processual, elaboração de peças, teses defensivas e recursos,
+    Advocacia criminal, com atuação em acompanhamento processual, elaboração de peças e recursos,
     conforme as particularidades de cada caso.
   </p>
 
   <div class="cta">
     <a class="btn" href="#contato">Agendar atendimento</a>
-    <a class="btn" href="{{ '/blog/' | relative_url }}">Ver publicações</a>
+    <a class="btn" href="/blog/">Ver publicações</a>
   </div>
-</section>
-
-<section class="container" id="blog" style="background:#0f0f0f;">
-  <h2 class="section-title">Publicações</h2>
-  <p class="muted">Jurisprudência, comentários e notas de estudo — conteúdo informativo.</p>
-
-  <div class="grid-blog">
-    {% for post in site.posts limit: 9 %}
-      <article class="card-post">
-        <div class="data">{{ post.date | date: "%d/%m/%Y" }}</div>
-        <h3><a href="{{ post.url | relative_url }}" style="color:inherit; text-decoration:none;">{{ post.title }}</a></h3>
-        <p class="muted">{{ post.excerpt | strip_html | truncatewords: 22 }}</p>
-        <a href="{{ post.url | relative_url }}" class="btn-ler">Ler →</a>
-      </article>
-    {% endfor %}
-  </div>
-
-  {% if site.posts.size == 0 %}
-    <p class="muted" style="margin-top:1.25rem;">Ainda não há posts publicados.</p>
-  {% endif %}
 </section>
 
 <footer id="contato">
@@ -208,8 +161,7 @@ layout: null
       Publicidade profissional orientada pela discrição e sobriedade.
     </p>
     <p>
-      Valter Mariano Sociedade Individual de Advocacia | Registro OAB/DF 11.172/25 · OAB/DF 85.673<br>
-      © 2026 Todos os direitos reservados.
+      Valter Mariano Sociedade Individual de Advocacia · © 2026
     </p>
   </div>
 </footer>
